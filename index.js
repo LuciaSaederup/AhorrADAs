@@ -115,3 +115,18 @@ botonAgregarNuevaOperacion.onclick = () => {
     seccionCategorias.classList.add("is-hidden");
     seccionReportes.classList.add("is-hidden");
 }
+
+
+
+// // -----------------CONVERTIR A JSON-----------
+//  const ConvertirAJSON = JSON.stringify(arrayDeOperaciones, 'operaciones');
+
+
+// // ---------GUARDAR EN LOCAL STORAGE--------
+//  localStorage.setItem('operaciones', personaConvertidoAJSON)
+
+// //---------------OBTENER INFO DEL LOCAL STOGARE------------------
+// const infoGuardada = localStorage.getItem('operaciones');
+
+// //-----------CONVERTIR DE JSON A JS-------------------
+//  const infoGuardadaEnJS = JSON.parse(infoGuardada)
