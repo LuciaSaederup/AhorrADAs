@@ -47,8 +47,6 @@ const boxOperaciones = document.getElementById("operaciones-realizadas");
 
 // --------------------array de objetos(operaciones)----------------
 let arrayDeOperaciones = []
-let nuevoObjeto = {}
-
 console.log(arrayDeOperaciones)
 
 montoNuevaOperacion.onchange = () => {
@@ -65,4 +63,55 @@ descripcionNuevaOperacion.onchange = (event) => {
 }
 fechaNuevaOperacion.oninput = () => {
     console.log(fechaNuevaOperacion.value)
+}
+
+botonAgregarNuevaOperacion.addEventListener('click', () => {
+    arrayDeOperaciones.push({
+        monto: montoNuevaOperacion.value,
+        tipo: tipoNuevaOperacion.value,
+        categoria: categoriaNuevaOperacion.value,
+        descripcion: descripcionNuevaOperacion.value,
+        fecha: fechaNuevaOperacion.value
+    })
+    console.log(arrayDeOperaciones)
+
+})
+
+const copiaArrayDeOperaciones = [...arrayDeOperaciones]
+
+const mostrarOperacionesEnHTML = (array) => {
+    let acc = ``
+
+    array.map((elemento) => {
+        acc = acc + `<div class="column is-3">
+                        <h3 class="has-text-weight-bold">
+                            ${elemento.descripcion}
+                        </h3>
+                    </div>
+                    <div class="column is-3">
+                        <span class="tag is-primary is-light">
+                        ${elemento.categoria}
+                        </span>
+                    </div>
+                    <div class="column has-text-grey">
+                        ${elemento.fecha}
+                    </div>
+                    <div class="column has-text-weight-bold">
+                        ${elemento.monto}
+                    </div>
+                    <div class="column">
+                        ${elemento.tipo}
+                    </div>`
+
+    })
+    return acc
+}
+
+botonAgregarNuevaOperacion.onclick = () => {
+    boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayDeOperaciones)
+
+    seccionBalances.classList.remove("is-hidden");
+    seccionAgregarOperacion.classList.add("is-hidden");
+    seccionCategorias.classList.add("is-hidden");
+    seccionReportes.classList.add("is-hidden");
 }
