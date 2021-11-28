@@ -130,4 +130,3 @@ botonAgregarNuevaOperacion.onclick = () => {
 
 // //-----------CONVERTIR DE JSON A JS-------------------
 //  const infoGuardadaEnJS = JSON.parse(infoGuardada)
-
