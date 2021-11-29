@@ -136,30 +136,29 @@ botonAgregarNuevaOperacion.onclick = () => {
 //
 //totales por categorias
 const ganancia = operacion.filter((current)=>{
-    return current.tipo==="ganancia"
-  })
-  
-  
-  
-  const sumarGanancia = ganancia.reduce ((acc,elemento)=>{
-     return acc + elemento.monto
-  },0)
-  
-  
-  gananciasHTML.innerHTML=sumarGanancia
-  
-  const gastos = operacion.filter((elemento)=>{
-    return elemento.tipo==="gasto"
-  })
-  
-  
-  
-  const sumarGastos = gastos.reduce ((acc,elemento)=>{
+  return current.tipo==="ganancia"
+})
+
+
+
+const sumarGanancia = ganancia.reduce ((acc,elemento)=>{
    return acc + elemento.monto
-  },0)
-  
-  gastosHTML.innerHTML= sumarGastos
-  
-  const gastosTotales = sumarGanancia- sumarGastos
-  gastosTotalesHTML.innerHTML = gastosTotales
-  
+},0)
+
+
+gananciasHTML.innerHTML=sumarGanancia
+
+const gastos = operacion.filter((elemento)=>{
+  return elemento.tipo==="gasto"
+})
+
+
+
+const sumarGastos = gastos.reduce ((acc,elemento)=>{
+ return acc + elemento.monto
+},0)
+
+gastosHTML.innerHTML= sumarGastos
+
+const gastosTotales = sumarGanancia- sumarGastos
+gastosTotalesHTML.innerHTML = gastosTotales
