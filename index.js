@@ -256,10 +256,32 @@ const aplicarFiltros = () => {
     
 }
 
+/*---------------------------Eventos para el filtro----------------------------------------*/
 
-
-
-
+filtroTipo.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    
+    filtroCategoria.onchange = () => {
+     const arrayFiltrado = aplicarFiltros()
+     boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    filtroFecha.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    /*********************************************************************************************/
+    ordenar.onchange = () => {
+    const arrayFiltrado = aplicarFiltros()
+    boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    /******************************************************************************************** */
+    
+    //Si el usuario elige ver fechas (Mas recientes) se aplica sort (b-a)
+    //Si el usuario elige ver fechas (Menos recientes) se aplica sort (a-b)
+    //Esto mismo se puede aplicar a monto mayor y menor  
+    
 
 
 // // -----------------CONVERTIR A JSON-----------
