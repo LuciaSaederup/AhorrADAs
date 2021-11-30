@@ -4,7 +4,9 @@ const verReportes = document.getElementById("ver-reportes");
 const seccionBalances = document.getElementById("seccion-balances");
 const seccionCategorias = document.getElementById("seccion-categorias");
 const seccionReportes = document.getElementById("seccion-reportes");
-
+const seccionNuevaOperacion = document.getElementById("seccion-agregar-operacion");
+const sinReportes = document.getElementById("sin-reportes");
+const conReportes = document.getElementById("con-reportes");
 
 verCategorias.addEventListener("click", (e) => {
     seccionCategorias.classList.remove("is-hidden");
@@ -20,18 +22,22 @@ verReportes.addEventListener("click", (e) => {
     seccionBalances.classList.add("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionReportes.classList.remove("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
 });
 
 
 
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
 const seccionAgregarOperacion = document.getElementById("seccion-agregar-operacion");
+const formNuevaOperacion = document.getElementById ("formulario-nueva-operacion")
+
 
 botonNuevaOperacion.addEventListener("click", (e) => {
     seccionBalances.classList.add("is-hidden");
     seccionAgregarOperacion.classList.remove("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionReportes.classList.add("is-hidden");
+    formNuevaOperacion.classList.remove("is-hidden")
 
 })
 
@@ -296,3 +302,104 @@ filtroTipo.onchange = () => {
 
 // //-----------CONVERTIR DE JSON A JS-------------------
 //  const infoGuardadaEnJS = JSON.parse(infoGuardada)
+
+
+const operaciones = [
+    {descripción:  "asdasd",
+   tipo: "gasto",
+   monto: 500,
+   categoria: "comida",}, 
+   
+   {descripción:  "asdasd",
+   tipo: "ganancia",
+   monto: 700,
+   categoria: "comida",} ,
+   
+   {descripción:  "asdasd",
+   tipo: "ganancia",
+   monto: 7090,
+   categoria: "comida",} ,
+   
+   
+   {descripción:  "asdasd",
+   tipo: "gasto",
+   monto: 508880,
+   categoria: "comida",}, 
+   
+   ]
+   
+   
+   console.log(operaciones)
+   
+   const verificarOperacionesEnReportes = () =>{
+       const operacionVerificada = operaciones.map((elemento,index) => {
+       
+           if(index > 1 ){
+               conReportes.classList.remove("is-hidden");
+               sinReportes.classList.add("is-hidden");
+   
+           }
+           else {
+               conReportes.classList.add("is-hidden");
+               sinReportes.classList.remove("is-hidden");
+           }
+           
+       })
+       return operacionVerificada
+   
+       }
+   
+   verificarOperacionesEnReportes()
+   
+   
+   const mayorGananciaTotal = document.getElementById("mayor-ganancia-total")
+   const mayorGastoTotal = document.getElementById("mayor-gasto-total")
+   const mayorBalanceTotal = document.getElementById("mayor-balance-total")
+   
+   
+   
+   // reportes: categoria con mayor ganancia
+   
+   const arrayFiltrado = (array, tipo) => {
+   
+       const arrayFilter = array.filter((elemento) => {
+         return elemento.tipo === tipo
+       })
+       return arrayFilter
+     }
+     
+     const categoriaMayorGanancia = (array) => {
+       const arraySort = array.sort((a, b) => {
+         return b.monto - a.monto
+       }, 0)
+     
+       let acc = ""
+       for (let i = 0; i < 1; i++){
+         return acc +=` <div class="column is-8 has-text-weight-medium has-text-left">Categoría con mayor ganancia</div>
+         <div class="column is-1 tag is-primary is-light has-text-left p-4">${arraySort[0].categoria}</div>
+         <div class="column is-3 has-text-weight-bold has-text-success has-text-right"> +$ ${arraySort[0].monto}</div>`
+       }
+     }
+     
+     const categoriaMayorGasto = (array) => {
+       const arraySort = array.sort((a, b) => {
+         return b.monto - a.monto
+     
+       }, 0)
+     
+       let acc = ""
+       for (let i = 0; i < 1; i++){
+         return acc += `<div class="column is-8 has-text-weight-medium has-text-left">Categoría con mayor gasto</div>
+         <div class="column is-1 tag is-primary is-light has-text-left p-4">${arraySort[0].categoria}</div>
+         <div class="column is-3 has-text-weight-bold has-text-danger has-text-right"> -$ ${arraySort[0].monto}</div>`
+     
+       }
+     }
+   
+     mayorGananciaTotal.innerHTML = categoriaMayorGanancia(arrayFiltrado(operaciones,"ganancia"))
+     mayorGastoTotal.innerHTML = categoriaMayorGasto(arrayFiltrado(operaciones,"gasto"))
+
+
+
+
+
