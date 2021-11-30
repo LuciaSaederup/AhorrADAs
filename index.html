@@ -73,24 +73,26 @@
 
                     </article>
                     <!-- ------------------------filtros-------------- -->
-
                     <article class="box" id="box-filtros">
                         <div class="columns">
                             <div class="column">
                                 <h4 class="title has-text-weight-bold is-size-4">Filtros</h4>
                             </div>
                             <div class="column has-text-right">
-                                <button class="button is-ghost">Ocultar filtros</button>
+                                <a href="#" id="click-filtros">Ocultar filtros</a>
                             </div>
                         </div>
+
+                        <div id="despliege-filtro">
+
                         <div class="field">
                             <label class="label">Filtros</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select id="filtro-tipo">
+                                    <select name="tipo" id="filtro-tipo">
                                   <option value="todos">Todos</option>
-                                  <option value="gastos">Gastos</option>
-                                  <option value="ganancias">Ganancias</option>                     
+                                  <option value="gasto">Gastos</option>
+                                  <option value="ganancia">Ganancias</option>                     
                                 </select>
                                 </div>
 
@@ -100,8 +102,8 @@
                             <label class="label">Categoría</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select id="filtro-categoria">
-                                  <option value="todas">Todas</option>
+                                    <select name="categoria" id="filtro-categoria">
+                                  <option value="todos">Todas</option>
                                   <option value="comida">Comida</option>
                                   <option value="servicios">Servicios</option> 
                                   <option value="salidas">Salidas</option> 
@@ -115,27 +117,29 @@
                         <div class="field">
                             <label class="label" for="date">Desde</label>
                             <div class="control">
-                                <input class="input" id="date" type="date">
+                                <input class="input" type="date" id="filtro-fecha">
                             </div>
                         </div>
                         <div class="field">
                             <label class="label">Ordenar por</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select>
-                                  <option>Mas reciente</option>
-                                  <option>Menos reciente</option>
-                                  <option>Mayor monto</option>  
-                                  <option>Menor monto</option>         
-                                  <option>A/Z</option>      
-                                  <option>Z/A</option>        
+                                    <select id="filtro-ordenar">
+                                  <option value="recientes">Mas reciente</option>
+                                  <option value="antiguas">Menos reciente</option>
+                                  <option value="monto_mayor">Mayor monto</option>  
+                                  <option value="monto_menor">Menor monto</option>         
+                                  <option value="A/Z">A/Z</option>      
+                                  <option value="Z/A">Z/A</option>        
                                 </select>
                                 </div>
 
                             </div>
                         </div>
+                    </div>
                     </article>
                 </div>
+                  
                 <!-- -------------------box operaciones--------------- -->
                 <div class="column is-7">
                     <article class="box" id="box-operaciones">
@@ -168,10 +172,7 @@
                             <div class="column has-text-weight-bold">Monto</div>
                             <div class="column has-text-weight-bold">Tipo</div>
                         </div>
-                        <div class="columns is-multiline" id="operaciones-realizadas"></div>
-
-
-
+                        <div class="" id="operaciones-realizadas"></div>
 
                     </article>
 
