@@ -83,8 +83,11 @@ const mostrarOperacionesEnHTML = (array) => {
     let acc = ``
 
     array.map((elemento) => {
-        acc = acc + `<div class="column is-3">
-                        <h3 class="has-text-weight-bold">
+        dateArray = elemento.fecha.split("-")
+        fechaIntefaz = dateArray[2]+"-"+dateArray[1]+'-'+dateArray[0]
+        acc = acc + `<div class="columns">
+                        <div class="column is-3">
+                            <h3 class="has-text-weight-bold">
                             ${elemento.descripcion}
                         </h3>
                     </div>
@@ -94,18 +97,20 @@ const mostrarOperacionesEnHTML = (array) => {
                         </span>
                     </div>
                     <div class="column has-text-grey">
-                        ${elemento.fecha}
+                        ${fechaIntefaz}
                     </div>
                     <div class="column has-text-weight-bold">
                         ${elemento.monto}
                     </div>
                     <div class="column">
                         ${elemento.tipo}
-                    </div>`
+                    </div>
+                 </div>`
 
     })
     return acc
 }
+boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayDeOperaciones)
 
 botonAgregarNuevaOperacion.onclick = () => {
     boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayDeOperaciones)
@@ -115,6 +120,31 @@ botonAgregarNuevaOperacion.onclick = () => {
     seccionCategorias.classList.add("is-hidden");
     seccionReportes.classList.add("is-hidden");
 }
+//----------------------Función ocultar o mostrar filtros------------------------
+
+let ocultarFiltro = document.getElementById('click-filtros'),
+    boxFiltro = document.getElementById('despliege-filtro'),
+    contador=0; 
+
+function cambio()
+{
+    if(contador==0)
+{
+    ocultarFiltro.innerText = 'Mostrar filtros'
+    boxFiltro.classList.add('is-hidden')
+    contador=1;
+}
+    else{
+    ocultarFiltro.innerText = 'Ocultar filtros'
+    boxFiltro.classList.remove('is-hidden')
+    contador=0;}
+}
+    ocultarFiltro.addEventListener('click',cambio,true)
+
+/***********************************************************************************/
+
+
+
 
 
 
