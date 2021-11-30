@@ -143,6 +143,120 @@ function cambio()
 
 /***********************************************************************************/
 
+/*---------------------------Elementos del DOM-------------------------------------*/
+const filtroTipo = document.getElementById("filtro-tipo")
+const filtroCategoria = document.getElementById("filtro-categoria")
+
+
+const filtroFecha = document.getElementById("filtro-fecha")
+
+const ordenar = document.getElementById("filtro-ordenar")
+
+
+/*------------------------Aplicación de filtros según elección---------------------*/
+
+const aplicarFiltros = () => {
+    const tipo = filtroTipo.value
+    const filtradoPorTipo = arrayDeOperaciones.filter((elemento) => {
+        if(tipo === "todos"){
+            return elemento
+        }
+        return elemento.tipo === tipo
+    })
+
+    const categoria = filtroCategoria.value
+    const filtradoPorCategoria = filtradoPorTipo.filter((elemento) => {
+        if(categoria === "todos"){
+            return elemento
+        }
+        return elemento.categoria === categoria
+    })
+
+    const fechaDesde = filtroFecha.value
+    filtradoPorFecha = filtradoPorCategoria.filter((elemento) => {
+        
+        if(fechaDesde === 0){
+            return elemento
+        }
+        return elemento.fecha >= fechaDesde
+    })
+/*------------------------------Agregado Ordenamiento-----------------------------------*/
+    console.log(ordenar.value)
+    switch (ordenar.value) {
+        case 'recientes':
+            filtradoPorFecha = ordernarPorFecha(filtradoPorFecha, 'DESC')
+        break
+        case 'antiguas':
+            filtradoPorFecha = ordernarPorFecha(filtradoPorFecha, 'ASC')
+        break
+        case 'monto_mayor':
+            filtradoPorFecha = ordernarPorMonto(filtradoPorFecha, 'DESC')
+        break
+        case 'monto_menor':
+            filtradoPorFecha = ordernarPorMonto(filtradoPorFecha, 'ASC')
+        break
+        case 'A/Z':
+            filtradoPorFecha = ordernarPorDescripcion(filtradoPorFecha, 'ASC')
+        break
+        case 'Z/A':
+            filtradoPorFecha = ordernarPorDescripcion(filtradoPorFecha, 'DESC')
+        break
+        default:
+    }
+
+  return filtradoPorFecha 
+
+}
+
+/*----------------aplicar método sort() para orden del (array) ----------------------------*/
+
+  const ordernarPorFecha = (arrayVariable, ordenar) => {
+    console.log(arrayVariable)
+    return [...arrayVariable].sort((a, b) => {
+      const fechaA = new Date(a.fecha)
+      const fechaB = new Date(b.fecha)
+      return ordenar === 'ASC'
+        ? fechaA.getTime() - fechaB.getTime()
+        : fechaB.getTime() - fechaA.getTime()
+    })
+  }
+  
+  const ordernarPorMonto = (arrayVariable, ordenar) => {
+    return [...arrayVariable].sort((a, b) => {
+      return ordenar === 'ASC' ? a.monto - b.monto : b.monto - a.monto
+    })
+  }
+  
+  const ordernarPorDescripcion = (arrayVariable, ordenar) => {
+    if(ordenar === 'ASC'){  
+        return [...arrayVariable].sort((a, b) => {            
+            if(a.descripcion.toLowerCase() < b.descripcion.toLowerCase())
+            {
+                return -1
+            }
+            if(a.descripcion.toLowerCase() > b.descripcion.toLowerCase())
+            {
+                return 1
+            }
+            return 0
+        })
+    }else{
+        return [...arrayVariable].sort((a, b) => {
+            if(a.descripcion.toLowerCase() > b.descripcion.toLowerCase())
+            {
+                return -1
+            }
+            if(a.descripcion.toLowerCase() < b.descripcion.toLowerCase())
+            {
+                return 1
+            }
+            return 0
+        })
+    }
+    
+}
+
+
 
 
 
