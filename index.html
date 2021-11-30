@@ -334,31 +334,85 @@
         </div>
         </div>
     </section>
-    <!-- --------------------REPORTES--------------------------- -->
-    <section class="section is-hidden" id="seccion-reportes">
+     <!-- --------------------REPORTES--------------------------- -->
+     <section class="section is-hidden" id="seccion-reportes">
         <div class="container">
             <div class="columns">
                 <div class="column is-8 is-offset-2">
                     <div class="box">
-                        <h3 class="title is-3 has-text-weight-bold">Reportes</h3>
+                        <h1 class="title is-3 has-text-weight-bold has-text-centered " >Reportes</h1> 
+                        <!-- --------------------SECCION SIN REPORTES--------------------------- -->
                         <div id="sin-reportes">
                             <div class="my-6 py-6">
                                 <div class="image">
                                     <div class="columns">
                                         <div class="column is-offset-3 is-6">
-                                            <div class="image">
+                                            <div class="image" >
                                                 <img src="/settings/undraw_Charts_re_5qe9 (1).svg">
                                             </div>
                                             <h4 class="title is-4 has-text-centered mt-6 mb-4 ">Operaciones insuficientes</h4>
                                             <p class="has-text-centered">Prueba agregando más operaciones</p>
-                                        </div>
+                                        </div>       
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                                     <!-- --------------------SECCION con REPORTES--------------------------- -->
+                        <div id="con-reportes" >
+                        <!-- Resumen -->
+                        <div class="columns is-align-items-center pb-1" id="mayor-ganancia-total">
+                            
+                        </div>
+                        <div class="columns is-align-items-center pb-1" id="mayor-gasto-total">
+                            
+                        </div>
+                        <div class="columns is-align-items-center pb-1" id="mayor-balance-total">
+                            <div class="column is-8 has-text-weight-medium has-text-left">Categoría con
+                                mayor balance</div>
+                            <div class="column is-1 tag is-primary is-light has-text-left p-4"
+                                id="mayor-balance">
+                            </div>
+                            <div class="column is-3 has-text-weight-bold has-text-right"
+                                id="mayor-balance-monto">
+                                +$0</div>
+                        </div>
+                        <!-- Totales por categoría -->
+                            <div class="section mb-5">
+                                <h2 class="title is-size-4 mb-5 pb-4">Totales por categoría</h2>
+                                <div class="columns has-text-weight-medium is-mobile mb-5">
+                                    <div class="column">Categoría</div>
+                                    <div class="column is 2">Ganancias
+                                        <p class="column is-2 has-text-right  has-text-success" >+$0</p>
+                                    </div>
+                                    <div class="column">Gastos
+                                        <p class="column is-2 has-text-right  has-text-danger" >-$0</p>
+                                    </div>
+                                    <div class="column">Balance
+                                        <p class="column is-2 has-text-right" >+$0</p>
+                                    </div>
+                                </div>
+                            </div>
+                          <!-- totales por mes -->
+                            <div class="section mb-5">
+                                <h2 class="title is-size-4 mb-5 pb-4">Totales por mes</h2>
+                                <div class="columns has-text-weight-medium is-mobile mb-5">
+                                    <div class="column">Mes</div>
+                                    <div class="column ">Ganancias
+                                        <p class="column is-2 has-text-right  has-text-success" >+$0</p>
+                                    </div>
+                                    <div class="column ">Gastos
+                                        <p class="column is-2 has-text-right  has-text-danger" >-$0</p>
+                                    </div>
+                                    <div class="column">Balance
+                                        <p class="column is-2 has-text-right" >+$0</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>    
+            </div> 
+        </div>                             
     </section>
 
 </body>
