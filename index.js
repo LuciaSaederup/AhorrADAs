@@ -4,7 +4,9 @@ const verReportes = document.getElementById("ver-reportes");
 const seccionBalances = document.getElementById("seccion-balances");
 const seccionCategorias = document.getElementById("seccion-categorias");
 const seccionReportes = document.getElementById("seccion-reportes");
-
+const seccionNuevaOperacion = document.getElementById("seccion-agregar-operacion");
+const sinReportes = document.getElementById("sin-reportes");
+const conReportes = document.getElementById("con-reportes");
 
 verCategorias.addEventListener("click", (e) => {
     seccionCategorias.classList.remove("is-hidden");
@@ -20,18 +22,22 @@ verReportes.addEventListener("click", (e) => {
     seccionBalances.classList.add("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionReportes.classList.remove("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
 });
 
 
 
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion");
 const seccionAgregarOperacion = document.getElementById("seccion-agregar-operacion");
+const formNuevaOperacion = document.getElementById ("formulario-nueva-operacion")
+
 
 botonNuevaOperacion.addEventListener("click", (e) => {
     seccionBalances.classList.add("is-hidden");
     seccionAgregarOperacion.classList.remove("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionReportes.classList.add("is-hidden");
+    formNuevaOperacion.classList.remove("is-hidden")
 
 })
 
@@ -296,3 +302,9 @@ filtroTipo.onchange = () => {
 
 // //-----------CONVERTIR DE JSON A JS-------------------
 //  const infoGuardadaEnJS = JSON.parse(infoGuardada)
+
+
+
+
+
+
