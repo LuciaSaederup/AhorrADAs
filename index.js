@@ -8,6 +8,12 @@ const seccionNuevaOperacion = document.getElementById("seccion-agregar-operacion
 const sinReportes = document.getElementById("sin-reportes");
 const conReportes = document.getElementById("con-reportes");
 
+//categorias//
+const seccionCategoriass = document.getElementById("seccion-categorias");
+const categoriasInput = document.getElementById("categorias-input");
+const botonAgregarCategoria = document.getElementById("boton-agregar-categoria");
+const listadoCategorias = document.querySelector("#listado-categorias");
+
 verCategorias.addEventListener("click", (e) => {
     seccionCategorias.classList.remove("is-hidden");
     seccionBalances.classList.add("is-hidden");
@@ -399,7 +405,55 @@ const operaciones = [
      mayorGananciaTotal.innerHTML = categoriaMayorGanancia(arrayFiltrado(operaciones,"ganancia"))
      mayorGastoTotal.innerHTML = categoriaMayorGasto(arrayFiltrado(operaciones,"gasto"))
 
+//CATEGORIAS//
+botonagregarCategoria.onclick = () => {
+    const categoriaAgregada = categoriasinput.value;
+    categoriasinput.value = "";
+    const categoriasActualizadas = obtenerCategorias();
+    categoriasActualizadas.push(categoriagregada);
+  
+    const categoriasAJSON = JSON.stringify(categoriasActualizadas);
+    localStorage.setItem("categorias", categoriasAJSON);
+  
+    agregarCategoriasAlABMDeCategorias();
+    actualizarCategoriasSelect();
+  };
+  
+  const obtenerCategorias = () => {
+    const categoriasGuardadasEnElLocalStorage =
+      localStorage.getItem("categorias");
+    const categoriasGuardadasJSONaJS = JSON.parse(categoriasGuardadasEnElLocalStorage);
+    if (categoriasGuardadasEnElLocalStorage === null) {
+      return categorias;
+    } else {
+      return categoriasGuardadasJSONaJS;
+    }
+  };
 
-
-
-
+  const agregarCategoriasAlABMDeCategorias = () => {
+    const categorias = obtenerCategorias();
+    const estructuraHtml = categorias.reduce((acc, elemento) => {
+      return (
+        acc +
+        ` 
+          <div class="columns" >
+            <div class="column">
+              <div class="columns is-vcentered is-mobile mt-4">
+                <div class="column is-9">
+                  <p class="tag">${elemento}</p>
+                </div>
+                <div class="column is-3">
+                  <div class="columns is-justify-content-flex-end is-mobile">
+                    <button class="button is-ghost is-small">Editar</button>
+                    <button class="button is-ghost is-small">Eliminar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      );
+    }, ``);
+    listadoCategorias.innerHTML = estructuraHtml;
+  };
+  agregarCategoriasAlABMDeCategorias();
