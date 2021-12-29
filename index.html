@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Si bien nada impide ponerle un nombre de clase al html, es preferible darselo al body -->
 <html lang="es" class="has-background-light">
 
 <head>
@@ -8,6 +9,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+    <!-- La mayoria de los servicios de hosting van a buscar el favicon con el nombre favicon.ico 
+    El icono debe ser de tipo ico, no svg como en este caso. Yo no puedo ver el favicon en su web por ejemplo -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
 
 </head>
@@ -115,6 +118,7 @@
                                 </div>
                             </div>
                             <div class="field">
+                                <!-- El for debe ser el mismo al id del elemento, no al type -->
                                 <label class="label" for="date">Desde</label>
                                 <div class="control">
                                     <input class="input" type="date" id="filtro-fecha">
@@ -157,6 +161,15 @@
                             <div class="my-6 py-6" id="sin-operaciones">
                                 <div class="column is-offset-3 is-6">
                                     <div class="image is-mobile">
+                                        <!-- La ruta de la imagen esta mal: no se ve en la web. 
+                                        Debe ser asi
+                                        <img src="settings/undraw_wallet_aym5.svg">
+                                        o asi
+                                        <img src="./settings/undraw_wallet_aym5.svg"> 
+                                    
+                                        Otro punto importante: todas las imagenes deben tener alt, por accesibilidad
+                                    -->
+
                                         <img src="/settings/undraw_wallet_aym5.svg">
                                     </div>
                                     <h4 class="title is-4 has-text-centered mt-6 mb-4">Sin resultados</h4>
@@ -178,13 +191,14 @@
 
                 </div>
 
-
+<!-- Esta etiqueta de cierre esta de mas, no cierra nada! -->
                 </article>
 
             </div>
 
 
         </div>
+        <!-- Mismo con este div. El tabulado las va a guiar acá, haganle caso! -->
         </div>
 
     </section>
@@ -238,8 +252,12 @@
                             </div>
                         </div>
                         <div class="field">
+                            <!-- El for debe ser igual al id del elemento, no al type -->
                             <label class="label has-text-weight-bold" for="date">Fecha</label>
                             <div class="control">
+                                <!-- El value es lo que esta  escrito en el input: en este caso "fecha" no tiene 
+                                sentido, y rompe el elemento, ya que se espera o que no esté (lo recomendado en este caso),
+                                un string vacio o un string con el tipo aaaa-mm-dd -->
                                 <input class="input" id="fecha-nueva-operacion" type="date" value="fecha">
                             </div>
                         </div>
@@ -273,7 +291,8 @@
 
                         </div>
                         <div id="listado-categorias"></div>
-
+                <!-- No dejen codigo comentado en entregas! Esto es MUY importante, 
+                va a dar muy mala imagen si lo hacen en challenges para empresas -->
                         <!-- 
                         <div class="columns is-vcentered is-mobile">
                             <div class="column ">
@@ -352,6 +371,7 @@
                                     <div class="columns">
                                         <div class="column is-offset-3 is-6">
                                             <div class="image">
+                                                <!-- Mismo comentario que en la otra imagen -->
                                                 <img src="/settings/undraw_Charts_re_5qe9 (1).svg">
                                             </div>
                                             <h4 class="title is-4 has-text-centered mt-6 mb-4 ">Operaciones insuficientes</h4>
@@ -417,6 +437,8 @@
     </section>
 
 </body>
+
+<!-- La etiqueta script siempre debe ir dentro del body, o en el head -->
 <script src="index.js"></script>
 
 </html>
