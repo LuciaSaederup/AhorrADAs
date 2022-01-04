@@ -16,6 +16,9 @@ const categoriasInput = document.getElementById("categorias-input");
 const botonAgregarCategoria = document.getElementById("boton-agregar-categoria");
 const listadoCategorias = document.querySelector("#listado-categorias");
 
+// No es necesario declarar el evento en esta funcion, ni en 
+// todas las demas. A menos que usen explicitamente la e, 
+// no deberia estar
 verCategorias.addEventListener("click", (e) => {
     seccionCategorias.classList.remove("is-hidden");
     seccionBalances.classList.add("is-hidden");
@@ -61,13 +64,16 @@ const tipoNuevaOperacion = document.getElementById("tipo-nueva-operacion");
 const categoriaNuevaOperacion = document.getElementById("categoria-nueva-operacion");
 const fechaNuevaOperacion = document.getElementById("fecha-nueva-operacion");
 const botonAgregarNuevaOperacion = document.getElementById("boton-agregar-operacion")
+// Nunca usan esta variable, mejor borrarla
 const formularioOperacion = document.getElementById('formulario-operacion')
 const boxOperaciones = document.getElementById("operaciones-realizadas");
 
 // --------------------array de objetos(operaciones)----------------
 let arrayDeOperaciones = []
+// No dejen console log en una entrega. Esto les bajaria muchisimos puntos en un challenge. 
 console.log(arrayDeOperaciones)
 
+// No entiendo el sentido de dejar ninguna de estas funciones en el codigo entregado
 montoNuevaOperacion.onchange = () => {
     console.log(montoNuevaOperacion.value)
 }
@@ -95,11 +101,16 @@ botonAgregarNuevaOperacion.addEventListener('click', () => {
 
 })
 
+// Por que declaran esta funcion aqui, que es igual a arrayDeOperaciones?? Nunca la usan
 const copiaArrayDeOperaciones = [...arrayDeOperaciones]
 
 const mostrarOperacionesEnHTML = (array) => {
+    // Si no van a interpolar variables, usen comillas simples: ""
     let acc = ``
+    // Si estan usando una acumuladora, por que no usar un reduce?
     array.map((elemento) => {
+        // falta un let o const para dateArray y fechaIntefaz, aqui y en varios lugares mas
+        // atencion a fechaIntefaz, supongo que quisieron decir fechaInterfaz
         dateArray = elemento.fecha.split("-")
         fechaIntefaz = dateArray[2] + "-" + dateArray[1] + '-' + dateArray[0]
         acc = acc + `<div class="columns">
@@ -135,6 +146,10 @@ const boxSinOperaciones = document.getElementById("sin-operaciones")
 const boxConOperaciones = document.getElementById('titulos-operaciones')
 
 botonAgregarNuevaOperacion.onclick = () => {
+    // arrayDeOperaciones es una variable que ustedes declaran acá en js, que se vuelve a ejecutar
+    // cada vez que recargamos la pagina. Como se vuelve a ejecutar, queda vacia en cada recarga
+    // No sirve de nada guardar las operaciones en local storage si no *leen* esas operaciones del local 
+    // storage para mostrarlas en html: eso es lo que deberian estar haciendo aqui
     boxOperaciones.innerHTML = mostrarOperacionesEnHTML(arrayDeOperaciones)
     seccionBalances.classList.remove("is-hidden");
     seccionAgregarOperacion.classList.add("is-hidden");
@@ -142,6 +157,7 @@ botonAgregarNuevaOperacion.onclick = () => {
     seccionReportes.classList.add("is-hidden");
     boxSinOperaciones.classList.add("is-hidden");
     boxConOperaciones.classList.remove("is-hidden")
+    // No dejen codigo comentado en una entrega
         // arrayConvertidoAJSON = JSON.stringify(arrayDeOperaciones, 'arrayDeOperaciones');
         // localStorage.setItem('arrayDeOperaciones', arrayDeOperaciones)
     localStorage.setItem('arrayDeOperaciones', JSON.stringify(arrayDeOperaciones, 'arrayDeOperaciones'));
@@ -151,11 +167,16 @@ botonAgregarNuevaOperacion.onclick = () => {
 
 //----------------------Función ocultar o mostrar filtros------------------------
 
+// Escriban un let por cada una de las variables. >
 let ocultarFiltro = document.getElementById('click-filtros'),
     boxFiltro = document.getElementById('despliege-filtro'),
     contador = 0;
 
+    // No usen la sintaxis vieja de funciones sin un buen motivo
 function cambio() {
+    // No es necesario tener este contador aqui, piensen otra manera mas clara de saber si hay que
+    // mostrar u ocultar los filtros. Seria mejor un booleano, ya que es mas claro:
+    // let mostrarFiltro = true, por ejemplo
     if (contador == 0) {
         ocultarFiltro.innerText = 'Mostrar filtros'
         boxFiltro.classList.add('is-hidden')
@@ -166,6 +187,7 @@ function cambio() {
         contador = 0;
     }
 }
+// Ese tercer parametro true no hace nada
 ocultarFiltro.addEventListener('click', cambio, true)
 
 /***********************************************************************************/
@@ -200,6 +222,7 @@ const aplicarFiltros = () => {
     })
 
     const fechaDesde = filtroFecha.value
+    // falta un const o let para filtradoPorFecha
     filtradoPorFecha = filtradoPorCategoria.filter((elemento) => {
 
             if (fechaDesde === 0) {
@@ -211,6 +234,9 @@ const aplicarFiltros = () => {
     console.log(ordenar.value)
     switch (ordenar.value) {
         case 'recientes':
+            // Necesito que me den una explicacion creíble de por qué esta sección está tan parecida 
+            // al código de Ada que hasta tienen el mismo error de ortografía en el nombre de la función
+            // (ordernar en lugar de ordenar)
             filtradoPorFecha = ordernarPorFecha(filtradoPorFecha, 'DESC')
             break
         case 'antiguas':
@@ -228,6 +254,7 @@ const aplicarFiltros = () => {
         case 'Z/A':
             filtradoPorFecha = ordernarPorDescripcion(filtradoPorFecha, 'DESC')
             break
+            // No dejen un default vacio
         default:
     }
 
@@ -237,6 +264,10 @@ const aplicarFiltros = () => {
 
 /*----------------aplicar método sort() para orden del (array) ----------------------------*/
 
+// Ni considero esta sección para la nota final: es literal una copia del código de Ada
+// No les sirve de nada escribir código que no entienden. Ustedes no aprenden. Preferiría aquí un honesto intento 
+// de hacer el sorting, aunque no les saliera. O que no estuviera en absoluto. Cualquier cosa menos copiar código que
+// no entienden y malgastar la oportunidad de aprenderlo. 
 const ordernarPorFecha = (arrayVariable, ordenar) => {
     console.log(arrayVariable)
     return [...arrayVariable].sort((a, b) => {
@@ -377,6 +408,7 @@ verificarOperacionesEnReportes()
 
 const mayorGananciaTotal = document.getElementById("mayor-ganancia-total")
 const mayorGastoTotal = document.getElementById("mayor-gasto-total")
+// Nunca usan esta variable
 const mayorBalanceTotal = document.getElementById("mayor-balance-total")
 
 
@@ -419,6 +451,8 @@ const categoriaMayorGasto = (array) => {
     }
 }
 
+// La logica de estas funciones está bien, pero estan sacando los datos del array de operaciones que 
+// tienen declarado mas arriba, no de las operaciones que efectivamente agregó el usuario!! Esto nunca va a funcionar!
 mayorGananciaTotal.innerHTML = categoriaMayorGanancia(arrayFiltrado(operaciones, "ganancia"))
 mayorGastoTotal.innerHTML = categoriaMayorGasto(arrayFiltrado(operaciones, "gasto"))
 
@@ -432,8 +466,11 @@ let categorias = [
     "Trabajo",
     "Salud",
 ];
+
+// este nombre no es bueno para la funcion. no queda claro qué hace.
 const estructuraHtml = (array) => {
     let acc = ``
+    // mejor un reduce que un map aqui
     array.map((elemento) => {
         acc = acc + `<div class="columns" >
             <div class="column">
@@ -455,7 +492,10 @@ const estructuraHtml = (array) => {
     })
     return acc
 }
+
 listadoCategorias.innerHTML = estructuraHtml(categorias);
+
+// para que necesitan esta funcion?
 categoriasInput.onchange = () => {
     console.log(categoriasInput.value)
 }
@@ -474,7 +514,7 @@ botonAgregarCategoria.onclick = () => {
 
 botonAgregarCategoria.addEventListener('click', () => {})
 
-
+// Nunca ejecutan esta funcion, para que la tienen aqui?
 const obtenerCategorias = () => {
     const categoriasGuardadasEnElLocalStorage =
         localStorage.getItem("categorias");
@@ -506,6 +546,7 @@ document.onload = () => {
     boxOperaciones.innerHTML = mostrarOperacionesEnHTML(infoAJS)
 }
 
+// no dejen codigo coemntado en una entrega
 // inicializacion()
 // window.onload = inicializacion();
 // const recuperoValores=()=> {
